@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="90dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginRight="10dp">
+
+    <TextView
+        android:id="@+id/textview_eventholder_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HH:MM:SS"
+        android:textColor="@color/eventLabels"/>
+
+    <ImageButton
+        android:id="@+id/imagebutton_eventholder_favorite"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/star"
+        android:scaleType="centerCrop"
+        android:background="@color/light_blue"/>
+
+    <TextView
+        android:id="@+id/textview_eventholder_firstplayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="player 1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/eventLabels"/>
+    <TextView
+        android:id="@+id/textview_eventholder_secondplayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="player 2"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/eventLabels"/>
+
+</LinearLayout>
