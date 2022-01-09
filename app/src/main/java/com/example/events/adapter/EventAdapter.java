@@ -1,4 +1,4 @@
-package com.example.events;
+package com.example.events.adapter;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.events.R;
 import com.example.events.model.Event;
 import com.example.events.view.MainActivity;
 
@@ -56,9 +57,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         //favorite
         if(eventList.get(position).isFavorite)
-            holder.favoriteImageButton.setColorFilter(Color.YELLOW);
+            holder.favoriteImageButton.setColorFilter(activity.getResources().getColor(R.color.yellow));
         else
-            holder.favoriteImageButton.setColorFilter(Color.BLACK);
+            holder.favoriteImageButton.setColorFilter(Color.WHITE);
 
         holder.favoriteImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +114,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         if(eventList.get(position).isFavorite){
             eventList.get(position).isFavorite = false;//TODO
 
-            holder.favoriteImageButton.setColorFilter(Color.BLACK);
+            holder.favoriteImageButton.setColorFilter(Color.WHITE);
 
             if(position != eventList.size()){
                 for(int i=eventList.size()-1;i>position;i--){
@@ -134,7 +135,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         else{
             eventList.get(position).isFavorite = true;
 
-            holder.favoriteImageButton.setColorFilter(Color.YELLOW);
+            holder.favoriteImageButton.setColorFilter(activity.getResources().getColor(R.color.yellow));
 
             if(position != 0){
                 for(int i = 0; i<position; i++){

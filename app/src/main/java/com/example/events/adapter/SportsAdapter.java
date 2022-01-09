@@ -1,4 +1,4 @@
-package com.example.events;
+package com.example.events.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.events.R;
 import com.example.events.model.Sport;
 
 import java.util.ArrayList;
