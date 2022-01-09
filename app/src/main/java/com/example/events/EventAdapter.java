@@ -2,16 +2,23 @@ package com.example.events;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>  {
     Activity activity;
@@ -58,6 +65,32 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 onFavoritePressed(position, holder);
             }
         });
+
+        //countdown timer
+        if(holder.countDownTimer != null)
+            holder.countDownTimer.cancel();
+
+        long millisInFuture = eventList.get(position).getEventStartTime() * 100L;
+        holder.countDownTimer = new CountDownTimer(millisInFuture, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                holder.eventTimeTextView.setText(getDate(millisUntilFinished));
+            }
+
+            public void onFinish() {
+                holder.eventTimeTextView.setText("00:00:00");
+            }
+        }.start();
+    }
+
+    private String getDate(long milliSeconds)
+    {
+        //create a DateFormatter object for displaying date in specified format
+        DateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String time = formatter.format(new Date(milliSeconds));
+
+        return time;
     }
 
     @Override
@@ -126,6 +159,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         public ImageButton favoriteImageButton;
         public TextView firstPlayerTextView;
         public TextView secondPlayerTextView;
+
+        public CountDownTimer countDownTimer;
 
         public ViewHolder(View view, TextView eventTimeTextView, ImageButton favoriteImageButton, TextView firstPlayerTextView, TextView secondPlayerTextView){
             super(view);
