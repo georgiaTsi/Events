@@ -43,24 +43,26 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.ViewHolder
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
         holder.eventsRecyclerView.setLayoutManager(layoutManager);
 
-        EventAdapter eventsAdapter = new EventAdapter(activity);
+        EventAdapter eventsAdapter = new EventAdapter(activity, position);
         holder.eventsRecyclerView.setAdapter(eventsAdapter);
 
         eventsAdapter.updateAdapter(sportList.get(position).getEventList());
 
-        holder.eventsRecyclerView.setVisibility(View.VISIBLE);
-
         //title
+        onExpandPressed(holder);
+
         holder.sportTitleLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.isSportExpanded = !holder.isSportExpanded;
+
                 onExpandPressed(holder);
             }
         });
     }
 
     private void onExpandPressed(ViewHolder holder) {
-        if(holder.isSportExpanded){//close
+        if(!holder.isSportExpanded){//close
             holder.eventsRecyclerView.setVisibility(View.GONE);
             holder.arrowImageView.setRotation(0);
         }
@@ -68,8 +70,6 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.ViewHolder
             holder.eventsRecyclerView.setVisibility(View.VISIBLE);
             holder.arrowImageView.setRotation(180);
         }
-
-        holder.isSportExpanded = !holder.isSportExpanded;
     }
 
     @Override

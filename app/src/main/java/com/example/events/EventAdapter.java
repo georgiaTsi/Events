@@ -15,11 +15,13 @@ import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>  {
     Activity activity;
+    int sportsAdapterPosition;
 
     List<Event> eventList = new ArrayList<Event>();
 
-    public EventAdapter(Activity activity){
+    public EventAdapter(Activity activity, int sportsAdapterPosition){
         this.activity = activity;
+        this.sportsAdapterPosition = sportsAdapterPosition;
     }
 
     @Override
@@ -88,6 +90,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                         eventList.add(unstarredEvent);
 
                         notifyDataSetChanged();
+                        ((MainActivity)activity).sportsAdapter.sportList.get(sportsAdapterPosition).setEventList(eventList);
 
                         break;
                     }
@@ -108,6 +111,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                         eventList.add(0, starredEvent);
 
                         notifyDataSetChanged();
+                        ((MainActivity)activity).sportsAdapter.sportList.get(sportsAdapterPosition).setEventList(eventList);
 
                         break;
                     }

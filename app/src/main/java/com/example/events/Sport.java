@@ -23,4 +23,7 @@ public class Sport {
     public List<Event> getEventList(){
         return eventList;
     }
+    public void setEventList(List<Event> newEventList){
+        eventList = newEventList;
+    }
 }

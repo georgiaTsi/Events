@@ -15,6 +15,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    SportsAdapter sportsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         sportsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        SportsAdapter sportsAdapter = new SportsAdapter(this);
+         sportsAdapter = new SportsAdapter(this);
         sportsRecyclerView.setAdapter(sportsAdapter);
 
         getSports(sportsAdapter);
