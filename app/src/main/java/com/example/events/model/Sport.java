@@ -1,6 +1,5 @@
-package com.example.events;
+package com.example.events.model;
 
-import com.example.events.SportsAdapter;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

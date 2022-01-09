@@ -1,4 +1,4 @@
-package com.example.events;
+package com.example.events.model;
 
 import com.google.gson.annotations.SerializedName;
 

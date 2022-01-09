@@ -1,4 +1,4 @@
-package com.example.events;
+package com.example.events.model;
 
 import java.util.List;
 

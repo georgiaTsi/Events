@@ -1,4 +1,4 @@
-package com.example.events;
+package com.example.events.model;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

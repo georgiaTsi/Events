@@ -1,4 +1,4 @@
-package com.example.events;
+package com.example.events.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,6 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.example.events.R;
+import com.example.events.model.RetrofitClient;
+import com.example.events.model.Sport;
+import com.example.events.SportsAdapter;
 
 import java.util.List;
 
@@ -15,7 +20,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    SportsAdapter sportsAdapter;
+    public SportsAdapter sportsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
