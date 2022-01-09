@@ -8,53 +8,45 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.events.R;
-import com.example.events.model.RetrofitClient;
 import com.example.events.model.Sport;
-import com.example.events.SportsAdapter;
+import com.example.events.adapter.SportsAdapter;
+import com.example.events.model.Sport;
+import com.example.events.presenter.MainPresenter;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class MainActivity extends AppCompatActivity implements MainView {
 
-public class MainActivity extends AppCompatActivity {
+    private MainPresenter presenter;
 
     public SportsAdapter sportsAdapter;
+    private RecyclerView sportsRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initSportsRecyclerView();
+        presenter = new MainPresenter();
+        presenter.attachView(this);
+
+        presenter.getSports();
     }
 
-    private void initSportsRecyclerView(){
-        RecyclerView sportsRecyclerView = findViewById(R.id.recyclerview_main_sports);
+    @Override
+    public void displaySports(List<Sport> sports){
+        sportsRecyclerView = findViewById(R.id.recyclerview_main_sports);
 
         sportsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-         sportsAdapter = new SportsAdapter(this);
+        sportsAdapter = new SportsAdapter(this);
         sportsRecyclerView.setAdapter(sportsAdapter);
 
-        getSports(sportsAdapter);
+        sportsAdapter.updateAdapter(sports);
     }
 
-    private void getSports(SportsAdapter sportsAdapter){
-        Call<List<Sport>> call = RetrofitClient.getInstance().getMyApi().getSports();
-        call.enqueue(new Callback<List<Sport>>() {
-            @Override
-            public void onResponse(Call<List<Sport>> call, Response<List<Sport>> response) {
-                List<Sport> results = response.body();
-
-                sportsAdapter.updateAdapter(results);
-            }
-
-            @Override
-            public void onFailure(Call<List<Sport>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
-            }
-        });
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }
